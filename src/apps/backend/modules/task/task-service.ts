@@ -7,6 +7,8 @@ import {
   GetTaskParams,
   GetTaskByNameParams,
   Task,
+  UpdateTaskParams,
+  UpdateTaskStatusParams,
 } from './types';
 
 export default class TaskService {
@@ -29,4 +31,15 @@ export default class TaskService {
   public static async getTasksForAccount(params: GetAllTaskParams): Promise<Task[]> {
     return TaskReader.getTasksForAccount(params);
   }
+  
+  public static async updateTasksForIdAndAccount(params:UpdateTaskParams): Promise<Task> {
+    
+    return TaskWriter.updateTasksForIdAndAccount(params);
+  }
+  
+  public static async updateTasksStatusForIdAndAccount(params:UpdateTaskStatusParams): Promise<Task> {
+    
+    return TaskWriter.updateTasksStatusForIdAndAccount(params);
+  }
+  
 }

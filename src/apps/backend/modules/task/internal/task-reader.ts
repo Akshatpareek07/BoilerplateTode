@@ -1,3 +1,4 @@
+
 import {
   GetAllTaskParams,
   GetTaskParams,
@@ -46,11 +47,17 @@ export default class TaskReader {
       page: (params.page) ? (params.page) : 1,
       size: (params.size) ? (params.size) : totalTasksCount,
     };
+
     const startIndex = (paginationParams.page - 1) * (paginationParams.size);
+
     const tasks = await TaskRepository.taskDB
       .find({ account: params.accountId, active: true })
       .limit(paginationParams.size)
       .skip(startIndex);
     return tasks.map((task) => TaskUtil.convertTaskDBToTask(task));
+
   }
+
+  
+
 }

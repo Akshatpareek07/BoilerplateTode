@@ -17,7 +17,7 @@ export default class TaskRESTApiServer {
     app.use('/accounts/:accountId/tasks', TaskRouter.getRoutes());
 
     app.use(ErrorHandler.AppErrorHandler);
-
+    
     return Promise.resolve(app);
   }
 }

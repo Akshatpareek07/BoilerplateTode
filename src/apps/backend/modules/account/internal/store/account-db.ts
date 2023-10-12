@@ -17,6 +17,7 @@ export const accountDbSchema: Schema = new Schema<AccountDB>(
       required: true,
       unique: true,
     },
+    
   },
   {
     timestamps: {

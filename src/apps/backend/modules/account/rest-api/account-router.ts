@@ -7,8 +7,9 @@ export default class AccountRouter {
   public static getRoutes(): Router {
     const router = Router();
 
-    router.post('/', AccountController.createAccount);
-
+    router.post('/register', AccountController.createAccount);
+    router.get('/login', AccountController.loginAccount);
+    
     return router;
   }
 }

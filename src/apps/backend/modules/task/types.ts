@@ -5,8 +5,10 @@ export class Task {
   id: string;
 
   account: string;
-
+  isComplete:string;
   name: string;
+  active:string;
+
 }
 
 export type GetAllTaskParams = {
@@ -33,12 +35,25 @@ export type CreateTaskParams = {
 export type DeleteTaskParams = {
   accountId: string;
   taskId: string;
+  active: boolean;
 };
 
 export type PaginationParams = {
   page: number;
   size: number;
 };
+
+export type UpdateTaskParams={
+  accountId: string;
+  taskId: string;
+  description:string;
+}
+
+export type UpdateTaskStatusParams={
+  accountId: string;
+  taskId: string;
+  isComplete:boolean;
+}
 
 export enum TaskErrorCode {
   NOT_FOUND = 'TASK_ERR_01',

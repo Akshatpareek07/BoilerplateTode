@@ -5,11 +5,11 @@ export default function Footer(): React.ReactElement {
   return (
     <div className='container'>
       <div>
-        <Link to='/about'>About Us</Link>
+        <Link to='/login'>Login</Link>
+        <p></p>
+        <Link to='/signup'>SignUp</Link>
       </div>
-      <div className='text-muted'>
-        &#169; Jalan Technology Consulting, 2022
-      </div>
+      
     </div>
   );
 }

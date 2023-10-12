@@ -1,45 +1,32 @@
-// import React, { useCallback, useState } from 'react';
-import React, {useState} from 'react';
-// import { useDeps } from '../../contexts';
-import './login.page.scss';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import './signup.page.scss';
 
 interface User{
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  cpassword: string;
+      email: string;
+      password: string;
+      cpassword: string;
 }
-
-export default function Login(): React.ReactElement {
+export default function SignUp(): React.ReactElement {
   const [user,setUser]=useState<User>({
-    firstName: '',
-      lastName: '',
       email: '',
       password: '',
       cpassword: '',
   });
   const formik = useFormik({
     initialValues: {
-      firstName: '',
-      lastName: '',
       email: '',
       password: '',
       cpassword: '',
     },
     validationSchema: Yup.object({
-      firstName: Yup.string()
-        .max(15, 'Must be 15 characters or less')
-        .required('Required'),
-      lastName: Yup.string()
-        .max(20, 'Must be 20 characters or less')
-        .required('Required'),
       email: Yup.string().email('Invalid email address').required('Required'),
       password: Yup.string()
         .required('Please enter a password')
+        // check minimum characters
         .min(8, 'Password must have at least 8 characters')
+        // different error messages for different requirements
         .matches(/[0-9]/, 'Password must contains digit')
         .matches(/[a-z]/, 'Password must contains a lowercase alphabet')
         .matches(/[A-Z]/, 'Password must contains a uppercase alphabet'),
@@ -48,9 +35,8 @@ export default function Login(): React.ReactElement {
         .oneOf([Yup.ref('password')], 'Passwords does not match'),
     }),
     onSubmit: (values) => {
+
       setUser({
-        firstName: values.firstName,
-      lastName: values.lastName,
       email: values.email,
       password: values.password,
       cpassword: values.cpassword,
@@ -85,6 +71,19 @@ export default function Login(): React.ReactElement {
       />
       {formik.touched.password && formik.errors.password ? (
         <div>{formik.errors.password}</div>
+      ) : null}
+
+      <label htmlFor="cpassword">Confirm Password</label>
+      <input
+        id="cpassword"
+        name="cpassword"
+        type="password"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values.cpassword}
+      />
+      {formik.touched.cpassword && formik.errors.cpassword ? (
+        <div>{formik.errors.cpassword}</div>
       ) : null}
 
       <button type="submit">Submit</button>

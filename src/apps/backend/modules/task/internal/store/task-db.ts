@@ -4,7 +4,9 @@ export interface TaskDB {
   _id: Types.ObjectId;
   account: Types.ObjectId;
   active: boolean;
+  isComplete:boolean;
   name: string;
+
 }
 
 export const taskDbSchema: Schema = new Schema<TaskDB>(
@@ -21,6 +23,11 @@ export const taskDbSchema: Schema = new Schema<TaskDB>(
       index: true,
       required: true,
     },
+    isComplete: {
+      type: Boolean,
+      required: false,
+    },
+    
   },
   {
     collection: 'tasks',

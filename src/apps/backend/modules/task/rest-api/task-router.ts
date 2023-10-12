@@ -12,7 +12,9 @@ export default class TaskRouter {
     router.get('/', AccountAuthMiddleware.ensureAccess, TaskController.getAllTasks);
     router.get('/:id', AccountAuthMiddleware.ensureAccess, TaskController.getTask);
     router.delete('/:id', AccountAuthMiddleware.ensureAccess, TaskController.deleteTask);
-
+    router.patch('/:id',AccountAuthMiddleware.ensureAccess, TaskController.updateTask);
+    router.patch('/status/:id',AccountAuthMiddleware.ensureAccess, TaskController.updateTaskStatus);
+    
     return router;
   }
 }
