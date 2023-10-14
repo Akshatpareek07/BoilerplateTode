@@ -1,0 +1,25 @@
+.nav-container{
+      background-color:#f67961;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+}
+.nav-left-part,.nav-right-part{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+      width: 50%;
+}
+.nav-right-part{
+      justify-content: flex-end;
+}
+
+.nav-left-part{
+      justify-content: flex-start;
+}
+.nav-left-part p{
+      margin: 0px;
+}

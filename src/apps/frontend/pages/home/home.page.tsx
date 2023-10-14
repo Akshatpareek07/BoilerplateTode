@@ -1,13 +1,23 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import { Nav } from '../../components';
+import './home.page.scss'     
 export default function Home(): React.ReactElement {
     return (
-      <div className='container'>
-        <div>
-          <Link to='/login'>Login</Link>
-          <p></p>
-          <Link to='/signup'>SignUp</Link>
-        </div>
+      <div className='home-container'>
+          <Nav>
+            <div>
+            <Link className='text-link' to='/login'>Login</Link>
+            </div><div>
+            <Link className='text-link' to='/signup'>SignUp</Link>
+            </div>
+          </Nav>
+          <div>
+            <h3>
+              Welcome to the TODO App
+            </h3>
+          </div>
+
         
       </div>
     );

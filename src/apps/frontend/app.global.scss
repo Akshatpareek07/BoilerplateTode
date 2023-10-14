@@ -1,3 +1,18 @@
 // add your global imports and css rules here
 
 @import "../../../node_modules/bootstrap/scss/bootstrap";
+body{
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+}
+.app-container{
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+    
+}
+.text-link{
+    text-decoration:none;
+    color: inherit;
+}

@@ -1,19 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import './signup.page.scss';
+import {Link} from 'react-router-dom'
+import { Nav } from '../../components';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
-interface User{
-      email: string;
-      password: string;
-      cpassword: string;
-}
+import { useDeps } from '../../contexts';
+
+
+// interface User{
+//       email: string;
+//       password: string;
+//       cpassword: string;
+// }
 export default function SignUp(): React.ReactElement {
-  const [user,setUser]=useState<User>({
-      email: '',
-      password: '',
-      cpassword: '',
-  });
+  const navigate=useNavigate();
+  
+  const { accessService } = useDeps();
+  // const [user,setUser]=useState<User>({
+  //     email: '',
+  //     password: '',
+  //     cpassword: '',
+  // });
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -34,18 +45,38 @@ export default function SignUp(): React.ReactElement {
         .required('Please re-type your password')
         .oneOf([Yup.ref('password')], 'Passwords does not match'),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
 
-      setUser({
-      email: values.email,
-      password: values.password,
-      cpassword: values.cpassword,
-      });
-      alert(JSON.stringify(user));
+      // setUser({
+      // email: values.email,
+      // password: values.password,
+      // cpassword: values.cpassword,
+      // });
+      try{
+      console.log("submit called");
+      console.log(values.email+values.password);
+      const user= await accessService.register(values.email,values.password);
+      console.log(user);
+      if(user.data.id)
+      {
+        toast.error("Please Login to Continue");
       
-    },
+        navigate(`/login`);
+    }
+    }
+    catch(e){
+      toast.error("Error!! User Already Existed");
+    }
+          },
   });
   return (
+
+    <div>
+      <Nav>
+            <div>
+            <Link className='text-link' to='/login'>Login</Link>
+            </div>
+      </Nav>
     <form onSubmit={formik.handleSubmit}>
       <label htmlFor="email">Email Address</label>
       <input
@@ -88,5 +119,6 @@ export default function SignUp(): React.ReactElement {
 
       <button type="submit">Submit</button>
     </form>
+    </div>
   );
 }

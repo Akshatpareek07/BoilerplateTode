@@ -14,7 +14,7 @@ export default class AccountRESTApiServer {
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
 
-    app.use('/accounts', AccountRouter.getRoutes());
+    app.use('/', AccountRouter.getRoutes());
 
     app.use(ErrorHandler.AppErrorHandler);
 
