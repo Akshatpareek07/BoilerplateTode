@@ -3,9 +3,8 @@ import { useEffect } from 'react';
 
 // import '../loginUser.css';
 // import ButtonComp from './ButtonComp';
-// import ListComp from './ListComp';
 // import CompleteComp from './CompleteComp';
-// import axios from 'axios';
+
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
