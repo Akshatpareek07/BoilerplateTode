@@ -30,7 +30,7 @@ export default class TaskWriter {
       account: params.accountId,
       name: params.name,
       active: true,
-      isComplete:true,
+      isComplete:false,
     });
 
     return TaskUtil.convertTaskDBToTask(createdTask);

@@ -3,13 +3,15 @@ import AppError from '../error/app-error';
 
 export class Task {
   id: string;
-
   account: string;
   isComplete:string;
   name: string;
   active:string;
 
 }
+
+
+
 
 export type GetAllTaskParams = {
   accountId: string;
