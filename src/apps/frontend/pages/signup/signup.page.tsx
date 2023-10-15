@@ -7,12 +7,12 @@ import { Nav } from '../../components';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AccessService } from '../../services';
 
-import { useDeps } from '../../contexts';
 
 export default function SignUp(): React.ReactElement {
   const navigate = useNavigate();
-  const { accessService } = useDeps();
+   const accessService = new AccessService();
 
   const formik = useFormik({
     initialValues: {

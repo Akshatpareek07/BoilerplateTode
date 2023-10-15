@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
-import { useDeps } from '../../contexts';
+// import { useDeps } from '../../contexts';
 import './todoinput.component.scss';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AccessService } from '../../services';
 
 interface todoInputProps {
   _id: string;
 }
 const TodoInput: React.FC<todoInputProps> = ({ _id }) => {
-  const { accessService } = useDeps();
+  const accessService = new AccessService();
   const [inputField, setInputField] = useState({
     taskDescription: '',
     uid: `${_id}`,

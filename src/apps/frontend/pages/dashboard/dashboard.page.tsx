@@ -4,15 +4,17 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { List, Nav, TodoInput, ButtonArea } from '../../components';
-import { useDeps } from '../../contexts';
+// import { useDeps } from '../../contexts';
 import { useParams, Link } from 'react-router-dom';
 import './dashboard.page.scss';
+import { AccessService } from '../../services';
 
 export default function Dashboard(): React.ReactElement {
   const navigate = useNavigate();
   const { _id } = useParams();
 
-  const { accessService } = useDeps();
+  // const { accessService } = useDeps();
+  const accessService = new AccessService();
   const [isCompleteScreen, setIsCompleteScreen] = useState(false);
   const [allTodos, setTodos] = useState([]);
 
