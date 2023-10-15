@@ -1,7 +1,23 @@
 .dashboard-content{  
     background-color: #fe7474;
     height:90vh;
+    overflow-y: auto;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.list-view{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #f63434;
+    width: 40%;
+    padding: 20px;
+    gap: 20px;
+  
+
 }

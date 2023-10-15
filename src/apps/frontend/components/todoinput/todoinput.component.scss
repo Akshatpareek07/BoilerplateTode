@@ -1,0 +1,20 @@
+.todoinput-container{
+  display: flex;
+  flex-direction: column;
+  background-color: #f63434;
+  width: 40%;
+  padding: 20px;
+  gap: 20px;
+}
+
+
+.todo-input-item{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+}
+.todoinput-button{
+  display: flex;
+  justify-content: center;
+}

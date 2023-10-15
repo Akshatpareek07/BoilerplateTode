@@ -30,13 +30,8 @@ export default function Dashboard(): React.ReactElement {
     const token = localStorage.getItem('token');
     const taskId = allTodos[index].id;
 
-    //   if (response.data.updatedItem._id === allTodos[index]._id)
-    //     toast.success('yeee! task Completed');
-    //   else toast.error('Error ! Unable to Update Status');
-
-    console.log(
-      await accessService.markComplete(accountId, token, taskId, completedOn),
-    );
+    await accessService.markComplete(accountId, token, taskId, completedOn),
+      console.log();
   };
 
   const handelDeleteTodo = async (index) => {
@@ -47,14 +42,6 @@ export default function Dashboard(): React.ReactElement {
     removeTodoArr.splice(index, 1);
     let response = await accessService.deleteTodo(accountId, token, taskId);
     console.log(response);
-
-    // let response = await axios.delete(
-    //   `http://localhost:4000/loginUser/delete/${allTodos[index]._id}`,
-    // );
-    // setTodos(removeTodoArr);
-    // if (response.data.message === 'Todo deleted successfully')
-    //   toast.success('Deleted Successfully');
-    // else toast.error('Error ! Unable to Deleted');
     console.log(index);
   };
 
@@ -79,14 +66,6 @@ export default function Dashboard(): React.ReactElement {
       const response = await accessService.getAllTodos(_id, token);
 
       setTodos(response.data);
-
-      // if (response.status === 200) {
-      //   setTodos(response.data.allTasks);
-      //   const newArr = allTodos.map((item, index) => {
-      //     //return item.isComplete !== 'NO' ? item : null;
-      //   });
-      //   setCompletedTodos(newArr);
-      // }
     } catch (e) {
       toast.error('Error!Unable to Fetch');
     }
@@ -110,10 +89,9 @@ export default function Dashboard(): React.ReactElement {
     fetchData();
   });
 
-  const handleStorage=()=>{
-      localStorage.clear();
-    
-  }
+  const handleStorage = () => {
+    localStorage.clear();
+  };
 
   return (
     <div>
@@ -124,37 +102,39 @@ export default function Dashboard(): React.ReactElement {
       </Nav>
       <div className="dashboard-content">
         <TodoInput _id={_id} />
-        <ButtonArea
-          handelTodoScreen={() => handelTodoScreen()}
-          handelCompleteScreen={() => handelCompleteScreen()}
-        />
-        <div>
-          {isCompleteScreen === false &&
-            allTodos.map((item, index) => {
-              return item.active === 'true' && item.isComplete === 'false' ? (
-                <List
-                  key={index}
-                  item={item.name}
-                  isComplete={item.isComplete}
-                  deleteEvent={() => handelDeleteTodo(index)}
-                  completeEvent={() => handleComplete(index)}
-                  editEvent={() => handelEdit(index)}
-                />
-              ) : null;
-            })}
-          {isCompleteScreen === true &&
-            allTodos.map((item, index) => {
-              return item.active === 'true' && item.isComplete !== 'false' ? (
-                <List
-                  key={index}
-                  item={item.name}
-                  isComplete={item.isComplete}
-                  deleteEvent={() => handelDeleteTodo(index)}
-                  completeEvent={() => handleComplete(index)}
-                  editEvent={() => handelEdit(index)}
-                />
-              ) : null;
-            })}
+        <div className='list-view'>
+          <ButtonArea
+            handelTodoScreen={() => handelTodoScreen()}
+            handelCompleteScreen={() => handelCompleteScreen()}
+          />
+          <div>
+            {isCompleteScreen === false &&
+              allTodos.map((item, index) => {
+                return item.active === 'true' && item.isComplete === 'false' ? (
+                  <List
+                    key={index}
+                    item={item.name}
+                    isComplete={item.isComplete}
+                    deleteEvent={() => handelDeleteTodo(index)}
+                    completeEvent={() => handleComplete(index)}
+                    editEvent={() => handelEdit(index)}
+                  />
+                ) : null;
+              })}
+            {isCompleteScreen === true &&
+              allTodos.map((item, index) => {
+                return item.active === 'true' && item.isComplete !== 'false' ? (
+                  <List
+                    key={index}
+                    item={item.name}
+                    isComplete={item.isComplete}
+                    deleteEvent={() => handelDeleteTodo(index)}
+                    completeEvent={() => handleComplete(index)}
+                    editEvent={() => handelEdit(index)}
+                  />
+                ) : null;
+              })}
+          </div>
         </div>
       </div>
     </div>
