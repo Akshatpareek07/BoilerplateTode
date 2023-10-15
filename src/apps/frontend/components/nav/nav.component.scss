@@ -1,9 +1,11 @@
 .nav-container{
-      background-color:#f67961;
+      color: aliceblue;
+      background-color:#0c0b0b;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px;
+      padding: 0px 20px;
+      height: 10vh;
 }
 .nav-left-part,.nav-right-part{
       display: flex;
@@ -12,6 +14,7 @@
       text-align: center;
       gap: 20px;
       width: 50%;
+     
 }
 .nav-right-part{
       justify-content: flex-end;
@@ -19,7 +22,10 @@
 
 .nav-left-part{
       justify-content: flex-start;
+
 }
 .nav-left-part p{
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
       margin: 0px;
 }
+

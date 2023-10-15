@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './login.page.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -6,71 +6,14 @@ import { Nav } from '../../components';
 import { Link } from 'react-router-dom';
 import { useDeps } from '../../contexts';
 import { useNavigate } from 'react-router-dom';
-
-// interface User{
-//   firstName: string;
-//   lastName: string;
-//   email: string;
-//   password: string;
-//   cpassword: string;
-// }
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login(): React.ReactElement {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const { accessService } = useDeps();
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
 
-  // const xyx=async(values)=>{
-  //   await values();
-  //   // console.log(values)
-  //   // setUsername(values.email);
-  //   // setPassword(values.password); 
-
-  // }
-  // const { accessService } = useDeps();
- 
- 
-  // const set=(values)=>{
-  //     setUsername(values.email);
-  //     setPassword(values.password);
-  //     console.log(username+" "+password);
-  //     login();
-  // }
-  // const login =useCallback(async () => {
-  //   console.log('called login');
-      
-  //     try {
-  //       console.log(username+password);
-  //       const loginDetails=await accessService.login(username, password);
-  //       console.log(loginDetails);
-  //       const token=await accessService.generateToken(username,password);
-  //       console.log('token generated');
-  //       console.log(token);
-  //       setSuccess(true);
-  //       console.log(success);
-  //     } catch (err) {
-  //       setError(true);
-  //       console.log(error);
-  //     }
-  //   }, [
-  //     accessService,
-  //     username,
-  //     password,
-  //   ]);
-  
-  
-  
-  // const testAdd=async (id,token)=>{
-  //   const description=prompt("Please enter Description");
-  //   console.log("result");
-  //   console.log(await accessService.addTodo(id,description,token));
-  //   console.log(await accessService.getAllTodos(id,token));
-    
-
-  // }
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -86,78 +29,81 @@ export default function Login(): React.ReactElement {
         .matches(/[A-Z]/, 'Password must contains a uppercase alphabet'),
     }),
     onSubmit: async (values) => {
-      
-      // setUsername(values.email);
-      // setPassword(values.password); 
       try {
-              const loginDetails=
-              await accessService.login(values.email, values.password);
-              // console.log("LoginDetails");
-               console.log(loginDetails);
-              const responsetoken=await accessService.generateToken(values.email,values.password);
+        const loginDetails = await accessService.login(
+          values.email,
+          values.password,
+        );
 
-              // console.log(`token generated  ${responsetoken.data.token}`);
-              localStorage.setItem('token',`${responsetoken.data.token}`);
-              localStorage.setItem('accountId',`${loginDetails.data.id}`);
-            console.log(responsetoken);
-              
-              // testAdd(loginDetails.data.id,responsetoken.data.token);
-              navigate(`/dashboard/${loginDetails.data.id}`);
-              console.log("success");
-            } catch (err) {
-              setError(true);
-              console.log(error);
-            }
-          
-    }
-   
-    // onSubmit: async(values) => {
-      
-    //   xyx((values)=>{
-    //     console.log(values)
-    // setUsername(values.email);
-    // setPassword(values.password); 
+        const responsetoken = await accessService.generateToken(
+          values.email,
+          values.password,
+        );
 
-    //    });
-    // },
+        localStorage.setItem('token', `${responsetoken.data.token}`);
+        localStorage.setItem('accountId', `${loginDetails.data.id}`);
+
+        toast.success('Logined Successfully');
+        navigate(`/dashboard/${loginDetails.data.id}`);
+      } catch (err) {
+        toast.error('Error! Login Failed');
+      }
+    },
   });
 
   return (
     <div>
-    <Nav>
-     <div>
-            <Link className='text-link' to='/signup'>SignUp</Link>       </div>
-    </Nav>
-    <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="email">Email Address</label>
-      <input
-        id="email"
-        name="email"
-        type="email"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.email}
-      />
-      {formik.touched.email && formik.errors.email ? (
-        <div>{formik.errors.email}</div>
-      ) : null}
+      <Nav>
+        <div>
+          <Link className="text-link" to="/signup">
+            SignUp
+          </Link>
+        </div>
+      </Nav>
+      <div className="login-content">
+        <div className="form-container">
+          <form onSubmit={formik.handleSubmit} className="form-item-container">
+            <div className="form-item">
+              <div  className='form-item-input'>
+                <label htmlFor="email">Email Address</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.email}
+                />
+              </div>
+              <div  className='form-item-error'>
+                {formik.touched.email && formik.errors.email ? (
+                  <div>{formik.errors.email}</div>
+                ) : null}
+              </div>
+            </div>
+            <div className="form-item">
+              <div className='form-item-input'>
+                <label htmlFor="password">Password</label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password}
+                />
+              </div>
+              <div className='form-item-error'>
+                {formik.touched.password && formik.errors.password ? (
+                  <div>{formik.errors.password}</div>
+                ) : null}
+              </div>
+            </div>
 
-      <label htmlFor="password">Password</label>
-      <input
-        id="password"
-        name="password"
-        type="password"
-        onChange={formik.handleChange}
-        // onChange={(e)=>setUserName(e.target.value)}
-        onBlur={formik.handleBlur}
-        value={formik.values.password}
-      />
-      {formik.touched.password && formik.errors.password ? (
-        <div>{formik.errors.password}</div>
-      ) : null}
-
-      <button type="submit">Submit</button>
-    </form>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

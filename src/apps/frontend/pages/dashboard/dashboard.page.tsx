@@ -1,24 +1,12 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-
-// import '../loginUser.css';
-// import ButtonComp from './ButtonComp';
-// import CompleteComp from './CompleteComp';
-
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { List, Nav, TodoInput, ButtonArea } from '../../components';
 import { useDeps } from '../../contexts';
 import { useParams } from 'react-router-dom';
-// interface TaskModel {
-//   id: string;
-//   account: string;
-//   isComplete:string;
-//   name: string;
-//   active:string;
 
-// }
 export default function Dashboard(): React.ReactElement {
   const navigate = useNavigate();
   const { _id } = useParams();
@@ -26,13 +14,6 @@ export default function Dashboard(): React.ReactElement {
   const { accessService } = useDeps();
   const [isCompleteScreen, setIsCompleteScreen] = useState(false);
   const [allTodos, setTodos] = useState([]);
-  // const [completedTodos, setCompletedTodos] = useState([]);
-
-  // const [errField, setErrField] = useState({
-  //   taskNameErr: '',
-  //   taskDescriptionErr: '',
-  // });
-
 
   const handleComplete = async (index) => {
     let now = new Date();
@@ -57,17 +38,6 @@ export default function Dashboard(): React.ReactElement {
     );
   };
 
-  // const handelDeleteCompleteTodo = async (index) => {
-  //   let removeCompleteTodoArr = [...completedTodos];
-  //   removeCompleteTodoArr.splice(index, 1);
-  //   let response = await axios.delete(
-  //     `http://localhost:4000/loginUser/delete/${completedTodos[index]._id}`,
-  //   );
-  //   setCompletedTodos(removeCompleteTodoArr);
-  //   if (response.data.message === 'Todo deleted successfully')
-  //     toast.success('Deleted Successfully');
-  //   else toast.error('Error ! Unable to Deleted');
-  // };
 
   const handelDeleteTodo = async (index) => {
     const accountId = localStorage.getItem('accountId');
@@ -108,10 +78,6 @@ export default function Dashboard(): React.ReactElement {
 
       const response = await accessService.getAllTodos(_id, token);
 
-      // console.log(response.data);
-      // setTimeout(() => {
-      //   console.log('Timeout finished!');  // Set a message after the timeout
-      // }, 15000);
       setTodos(response.data);
 
       // if (response.status === 200) {
@@ -134,6 +100,9 @@ export default function Dashboard(): React.ReactElement {
     setIsCompleteScreen(true);
   };
 
+  const handelLogout=()=>{
+    navigate('/login');
+  }
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -147,7 +116,7 @@ export default function Dashboard(): React.ReactElement {
   return (
     <div className="App">
       <Nav>
-        <button>Logout</button>
+        <button onClick={handelLogout}>Logout</button>
       </Nav>
       <TodoInput _id={_id} />
       <ButtonArea
@@ -161,6 +130,7 @@ export default function Dashboard(): React.ReactElement {
               <List
                 key={index}
                 item={item.name}
+                isComplete={item.isComplete}
                 deleteEvent={() => handelDeleteTodo(index)}
                 completeEvent={() => handleComplete(index)}
                 editEvent={() => handelEdit(index)}
@@ -173,9 +143,11 @@ export default function Dashboard(): React.ReactElement {
               <List
                 key={index}
                 item={item.name}
+                isComplete={item.isComplete}
                 deleteEvent={() => handelDeleteTodo(index)}
                 completeEvent={() => handleComplete(index)}
                 editEvent={() => handelEdit(index)}
+
               />
             ) : null;
           })}

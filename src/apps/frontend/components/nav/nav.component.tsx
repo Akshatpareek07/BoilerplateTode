@@ -14,13 +14,4 @@ const Nav:React.FC<PropsWithChildren>=({children})=>(
       </div>
 );
 
-// export default function Nav({children,}): React.FC<PropsWithChildren> 
-//   (
-//     <div className='container'>
-//       <LuListTodo></LuListTodo>
-//       TODO APP
-//       {children}
-//     </div>
-//   );
-// LuListTodo
 export default Nav;

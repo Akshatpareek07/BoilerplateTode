@@ -23,13 +23,14 @@ import {BsCheckLg} from 'react-icons/bs';
 interface ListProps {
   key: number;
   item: string;
+  isComplete:string;
   deleteEvent:(index:number)=>void;
   completeEvent:(index:number)=>void;
   editEvent:(index:number)=>void;
 }
 
 // Define the functional component with the specified props
-const List: React.FC<ListProps> = ({key,item,deleteEvent,completeEvent,editEvent}) => {
+const List: React.FC<ListProps> = ({key,item,isComplete,deleteEvent,completeEvent,editEvent}) => {
   
  const handleDelete = (key) => {
   deleteEvent(key);
@@ -40,11 +41,16 @@ const List: React.FC<ListProps> = ({key,item,deleteEvent,completeEvent,editEvent
     const handelEdit=(key)=>{
       editEvent(key);
     }
+    let content;
+    if(isComplete!=="false")
+    content=<small>{isComplete}</small>
+    else
+    content=null;
   return (
       <div className='todo-list-item' key={key}>
      <div>
-         {/* <h3>{item.taskName}</h3> */}
          <p>{item}</p>
+        {content}
      </div>
      <div>
          <AiOutlineDelete className='icon' onClick={handleDelete} title='Delete?'/>
