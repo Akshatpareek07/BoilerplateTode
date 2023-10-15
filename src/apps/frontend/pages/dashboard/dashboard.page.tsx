@@ -102,7 +102,7 @@ export default function Dashboard(): React.ReactElement {
       </Nav>
       <div className="dashboard-content">
         <TodoInput _id={_id} />
-        <div className='list-view'>
+        <div className="list-view">
           <ButtonArea
             handelTodoScreen={() => handelTodoScreen()}
             handelCompleteScreen={() => handelCompleteScreen()}

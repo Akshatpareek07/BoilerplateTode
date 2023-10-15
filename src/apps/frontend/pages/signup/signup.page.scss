@@ -1,39 +1,35 @@
-.signup-content{
-    background-color: #fe7474;
-    height:90vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    
+.signup-content {
+  background-color: #fe7474;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.form-container{
-    background-color: #f63434;
-    height: 50%;
-    width: 30%;
-    display: flex;
+.form-container {
+  background-color: #f63434;
+  height: 50%;
+  width: 30%;
+  display: flex;
 }
 
-.form-item-container{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: space-evenly;
-    padding: 30px;
-   
+.form-item-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-evenly;
+  padding: 30px;
 }
 
-.form-item{
-    width: inherit;
-    display: flex;
-    flex-direction: column;
+.form-item {
+  width: inherit;
+  display: flex;
+  flex-direction: column;
 
-    align-items: space-between;
+  align-items: space-between;
 }
 
-
-.form-item-error{
-    display: flex;
-    justify-content: flex-end;
-    font-weight: bold;
+.form-item-error {
+  display: flex;
+  justify-content: flex-end;
+  font-weight: bold;
 }

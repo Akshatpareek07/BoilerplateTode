@@ -38,7 +38,7 @@ const List: React.FC<ListProps> = ({
         <h3>{item}</h3>
         {content}
       </div>
-      <div className='todo-list-icons'>
+      <div className="todo-list-icons">
         <div>
           <AiOutlineDelete
             className="icon"

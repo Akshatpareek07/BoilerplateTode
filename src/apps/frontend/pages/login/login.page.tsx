@@ -64,7 +64,7 @@ export default function Login(): React.ReactElement {
         <div className="form-container">
           <form onSubmit={formik.handleSubmit} className="form-item-container">
             <div className="form-item">
-              <div  className='form-item-input'>
+              <div className="form-item-input">
                 <label htmlFor="email">Email Address</label>
                 <input
                   id="email"
@@ -75,14 +75,14 @@ export default function Login(): React.ReactElement {
                   value={formik.values.email}
                 />
               </div>
-              <div  className='form-item-error'>
+              <div className="form-item-error">
                 {formik.touched.email && formik.errors.email ? (
                   <div>{formik.errors.email}</div>
                 ) : null}
               </div>
             </div>
             <div className="form-item">
-              <div className='form-item-input'>
+              <div className="form-item-input">
                 <label htmlFor="password">Password</label>
                 <input
                   id="password"
@@ -93,7 +93,7 @@ export default function Login(): React.ReactElement {
                   value={formik.values.password}
                 />
               </div>
-              <div className='form-item-error'>
+              <div className="form-item-error">
                 {formik.touched.password && formik.errors.password ? (
                   <div>{formik.errors.password}</div>
                 ) : null}

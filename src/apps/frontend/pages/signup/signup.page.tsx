@@ -60,7 +60,7 @@ export default function SignUp(): React.ReactElement {
         <div className="form-container">
           <form onSubmit={formik.handleSubmit} className="form-item-container">
             <div className="form-item">
-              <div className='form-item-input'>
+              <div className="form-item-input">
                 <label htmlFor="email">Email Address</label>
                 <input
                   id="email"
@@ -72,12 +72,12 @@ export default function SignUp(): React.ReactElement {
                 />
               </div>
               {formik.touched.email && formik.errors.email ? (
-                <div className='form-item-error'>{formik.errors.email}</div>
+                <div className="form-item-error">{formik.errors.email}</div>
               ) : null}
             </div>
 
             <div className="form-item">
-              <div className='form-item-input'>
+              <div className="form-item-input">
                 <label htmlFor="password">Password</label>
                 <input
                   id="password"
@@ -89,12 +89,12 @@ export default function SignUp(): React.ReactElement {
                 />
               </div>
               {formik.touched.password && formik.errors.password ? (
-                <div className='form-item-error'>{formik.errors.password}</div>
+                <div className="form-item-error">{formik.errors.password}</div>
               ) : null}
             </div>
 
             <div className="form-item">
-              <div className='form-item-input'>
+              <div className="form-item-input">
                 <label htmlFor="cpassword">Confirm Password</label>
                 <input
                   id="cpassword"
@@ -106,7 +106,7 @@ export default function SignUp(): React.ReactElement {
                 />
               </div>
               {formik.touched.cpassword && formik.errors.cpassword ? (
-                <div className='form-item-error'>{formik.errors.cpassword}</div>
+                <div className="form-item-error">{formik.errors.cpassword}</div>
               ) : null}
             </div>
 

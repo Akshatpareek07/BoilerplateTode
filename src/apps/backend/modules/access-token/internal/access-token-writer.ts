@@ -12,6 +12,7 @@ export default class AccessTokenWriter {
       username: params.username,
       password: params.password,
     };
+
     const account = await AccountService.getAccountByUsernamePassword(
       accountSearchParams,
     );
