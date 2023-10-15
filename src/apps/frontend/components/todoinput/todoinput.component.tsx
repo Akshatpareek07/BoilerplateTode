@@ -51,8 +51,7 @@ const TodoInput:React.FC<todoInputProps>=({_id})=>{
           </div>
           <div className="todo-input-button">
             <button onClick={handleAddTodo}>Addd</button>
-            {/* <ButtonComp class="primaryBtn" event={handleAddTodo} toAdd="Add" /> */}
-          </div>
+                   </div>
       </div>
 );
 }

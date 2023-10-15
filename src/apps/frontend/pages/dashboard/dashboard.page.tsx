@@ -5,7 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { List, Nav, TodoInput, ButtonArea } from '../../components';
 import { useDeps } from '../../contexts';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import './dashboard.page.scss';
 
 export default function Dashboard(): React.ReactElement {
   const navigate = useNavigate();
@@ -37,7 +38,6 @@ export default function Dashboard(): React.ReactElement {
       await accessService.markComplete(accountId, token, taskId, completedOn),
     );
   };
-
 
   const handelDeleteTodo = async (index) => {
     const accountId = localStorage.getItem('accountId');
@@ -100,9 +100,6 @@ export default function Dashboard(): React.ReactElement {
     setIsCompleteScreen(true);
   };
 
-  const handelLogout=()=>{
-    navigate('/login');
-  }
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -113,44 +110,52 @@ export default function Dashboard(): React.ReactElement {
     fetchData();
   });
 
-  return (
-    <div className="App">
-      <Nav>
-        <button onClick={handelLogout}>Logout</button>
-      </Nav>
-      <TodoInput _id={_id} />
-      <ButtonArea
-        handelTodoScreen={() => handelTodoScreen()}
-        handelCompleteScreen={() => handelCompleteScreen()}
-      />
-      <div>
-        {isCompleteScreen === false &&
-          allTodos.map((item, index) => {
-            return item.active === 'true' && item.isComplete === 'false' ? (
-              <List
-                key={index}
-                item={item.name}
-                isComplete={item.isComplete}
-                deleteEvent={() => handelDeleteTodo(index)}
-                completeEvent={() => handleComplete(index)}
-                editEvent={() => handelEdit(index)}
-              />
-            ) : null;
-          })}
-        {isCompleteScreen === true &&
-          allTodos.map((item, index) => {
-            return item.active === 'true' && item.isComplete !== 'false' ? (
-              <List
-                key={index}
-                item={item.name}
-                isComplete={item.isComplete}
-                deleteEvent={() => handelDeleteTodo(index)}
-                completeEvent={() => handleComplete(index)}
-                editEvent={() => handelEdit(index)}
+  const handleStorage=()=>{
+      localStorage.clear();
+    
+  }
 
-              />
-            ) : null;
-          })}
+  return (
+    <div>
+      <Nav>
+        <Link className="text-link" to="/login" onClick={handleStorage}>
+          Logout
+        </Link>
+      </Nav>
+      <div className="dashboard-content">
+        <TodoInput _id={_id} />
+        <ButtonArea
+          handelTodoScreen={() => handelTodoScreen()}
+          handelCompleteScreen={() => handelCompleteScreen()}
+        />
+        <div>
+          {isCompleteScreen === false &&
+            allTodos.map((item, index) => {
+              return item.active === 'true' && item.isComplete === 'false' ? (
+                <List
+                  key={index}
+                  item={item.name}
+                  isComplete={item.isComplete}
+                  deleteEvent={() => handelDeleteTodo(index)}
+                  completeEvent={() => handleComplete(index)}
+                  editEvent={() => handelEdit(index)}
+                />
+              ) : null;
+            })}
+          {isCompleteScreen === true &&
+            allTodos.map((item, index) => {
+              return item.active === 'true' && item.isComplete !== 'false' ? (
+                <List
+                  key={index}
+                  item={item.name}
+                  isComplete={item.isComplete}
+                  deleteEvent={() => handelDeleteTodo(index)}
+                  completeEvent={() => handleComplete(index)}
+                  editEvent={() => handelEdit(index)}
+                />
+              ) : null;
+            })}
+        </div>
       </div>
     </div>
   );
