@@ -10,7 +10,7 @@ export default class AccessService extends APIService {
 login(username: string, password: string): Promise<any> {
   
   console.log(username,password);
-    return this.apiClient.post('/login', {
+    return this.apiClient.post('/gettoken', {
       username,
       password,
     });
@@ -32,7 +32,7 @@ login(username: string, password: string): Promise<any> {
         authorization: `Bearer ${token}`, // Example: Bearer token for authentication
         };
 
-        return this.apiClient.post(`/accounts/${id}/tasks`, {
+        return this.apiClient.post(`/${id}/tasks`, {
           name,
         },  { headers },);
       }
@@ -44,7 +44,7 @@ login(username: string, password: string): Promise<any> {
           authorization: `Bearer ${token}`, // Example: Bearer token for authentication
           };
   
-          return this.apiClient.get(`/accounts/${id}/tasks`,{ headers },);
+          return this.apiClient.get(`/${id}/tasks`,{ headers },);
         }
 
         deleteTodo(id: string,token:string,t_id:string): Promise<any> {
@@ -56,7 +56,7 @@ login(username: string, password: string): Promise<any> {
             authorization: `Bearer ${token}`, // Example: Bearer token for authentication
             };
 
-            return this.apiClient.delete(`/accounts/${id}/tasks/${t_id}`,{ headers },);
+            return this.apiClient.delete(`/${id}/tasks/${t_id}`,{ headers },);
           } 
           
         markComplete(id: string,token:string,t_id:string,isComplete:string): Promise<any> {
@@ -67,7 +67,7 @@ login(username: string, password: string): Promise<any> {
             };
             console.log(id,token,t_id,isComplete);
             
-            return this.apiClient.patch(`/accounts/${id}/tasks/status/${t_id}`,{
+            return this.apiClient.patch(`/${id}/tasks/status/${t_id}`,{
               isComplete,
               },{ headers },);
           } 
@@ -79,7 +79,7 @@ login(username: string, password: string): Promise<any> {
               };
               // console.log(id,token,t_id,isComplete);
               
-              return this.apiClient.patch(`/accounts/${id}/tasks/${t_id}`,{
+              return this.apiClient.patch(`/${id}/tasks/${t_id}`,{
                 description,
                 },{ headers },);
             } 
