@@ -90,7 +90,7 @@ export default function Dashboard(): React.ReactElement {
   });
   useEffect(() => {
     fetchData();
-  },[]);
+  });
 
   const handleStorage = () => {
     localStorage.clear();

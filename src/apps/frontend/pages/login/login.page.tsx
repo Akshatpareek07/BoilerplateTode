@@ -4,7 +4,6 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Nav } from '../../components';
 import { Link } from 'react-router-dom';
-// import { useDeps } from '../../contexts';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,8 +11,6 @@ import { AccessService } from '../../services';
 
 export default function Login(): React.ReactElement {
   const navigate = useNavigate();
-  // const { accessService } = useDeps();
-  // const [error, setError] = useState(false);
   const accessService = new AccessService();
   const formik = useFormik({
     initialValues: {
