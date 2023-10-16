@@ -18,13 +18,13 @@ export default function App(): React.ReactElement {
     if (inspectletKey) {
       InspectLet();
     }
-  }, []);
+  });
 
   return (
     
       <Router>
         <div className='app-container'>
-          
+        
           <ToastContainer/>
           <Routes>
             <Route path='/' element={<Home />}/>

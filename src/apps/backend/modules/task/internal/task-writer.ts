@@ -42,7 +42,8 @@ export default class TaskWriter {
       accountId: params.accountId,
       taskId: params.taskId,
     };
-
+    
+    console.log('delete writer');
     const task = await TaskReader.getTaskForAccount(taskParams);
     if(task.active==='false')
     throw new TaskNotFoundError(params.taskId);

@@ -50,7 +50,8 @@ login(username: string, password: string): Promise<any> {
         deleteTodo(id: string,token:string,t_id:string): Promise<any> {
           // console.log("register called");
           // console.log(username+password);
-          console.log(id,token,t_id);
+          // console.log(id,token,t_id);
+          console.log('in access services Handeldelete');
           const headers = {
             authorization: `Bearer ${token}`, // Example: Bearer token for authentication
             };

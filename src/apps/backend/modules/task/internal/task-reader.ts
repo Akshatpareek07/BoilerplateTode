@@ -14,6 +14,8 @@ import TaskUtil from './task-util';
 
 export default class TaskReader {
   public static async getTaskForAccount(params: GetTaskParams): Promise<Task> {
+    
+    console.log('delete task reader');
     const task = await TaskRepository.taskDB.findOne({
       _id: params.taskId,
       account: params.accountId,

@@ -7,6 +7,7 @@ import TaskController from './task-controller';
 export default class TaskRouter {
   public static getRoutes(): Router {
     const router = Router({ mergeParams: true });
+    // console.log("routs");
 
     router.post('/', AccountAuthMiddleware.ensureAccess, TaskController.createTask);
     router.get('/', AccountAuthMiddleware.ensureAccess, TaskController.getAllTasks);

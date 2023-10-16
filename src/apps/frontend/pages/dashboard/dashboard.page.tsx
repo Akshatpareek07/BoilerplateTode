@@ -37,6 +37,7 @@ export default function Dashboard(): React.ReactElement {
   };
 
   const handelDeleteTodo = async (index) => {
+    console.log('in Handeldelete');
     const accountId = localStorage.getItem('accountId');
     const token = localStorage.getItem('token');
     const taskId = allTodos[index].id;
@@ -51,7 +52,7 @@ export default function Dashboard(): React.ReactElement {
     const accountId = localStorage.getItem('accountId');
     const token = localStorage.getItem('token');
     const taskId = allTodos[index].id;
-    const description = prompt('Enter the Updated Description');
+    const description = prompt('Enter the Updated Task Description');
     const response = accessService.updateTask(
       accountId,
       token,
@@ -89,7 +90,7 @@ export default function Dashboard(): React.ReactElement {
   });
   useEffect(() => {
     fetchData();
-  });
+  },[]);
 
   const handleStorage = () => {
     localStorage.clear();
